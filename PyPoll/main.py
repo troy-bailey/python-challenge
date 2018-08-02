@@ -31,7 +31,6 @@ with open (csvpath, newline = "") as csvfile:
         else:
             voteTally[row[2]] = 1
 
-
 # Set up analysis headers
 print("Election Results")
 print("-----------------------")
@@ -42,9 +41,23 @@ for candidate in voteTally:
     if voteTally[candidate] > winnerCount:
         winner = candidate
         winnerCount = voteTally[candidate]
-    print(candidate, str(round(voteTally[candidate]/voteCount*100,4)) + "% (" + str(voteTally[candidate]) + ")")
+    print(candidate + str(round(voteTally[candidate]/voteCount*100,4)) + "% (" + str(voteTally[candidate]) + ")")
 print("-----------------------")
 print("Winner: " + winner)
 print("-----------------------")
 
+# Output to text file
+
+f = open("pyPollOut.txt","w")
+f.write("Election Results\n")
+f.write("-----------------------\n")
+f.write("Total Votes: " + str(voteCount)  + "\n")
+f.write("-----------------------\n")
+# Loop through the tally and create the textfile
+for candidate in voteTally:
+    f.write(candidate + " " + str(round(voteTally[candidate]/voteCount*100,4)) + "% (" + str(voteTally[candidate]) + ")\n")
+f.write("-----------------------\n")
+f.write("Winner: " + winner + "\n")
+f.write("-----------------------\n")
+f.close()
 
