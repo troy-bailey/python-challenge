@@ -5,25 +5,66 @@ from pathlib import Path
 
 # Setup path to read csv file
 csvpath = Path("budget_data.csv")
-print(csvpath)
 
 # Set up variables
 monthCount = 0
+plPreviousMonth = 0
+plChange = 0
+plChangeSum = 0
 greatestIncreaseDate = ""
 greatestDecreaseDate = ""
-greatestIncreaseAmt = 0.0
-greatestDecreaseAmt = 0.0
-plNet = 0.0
-plAvg = 0.0
-print("variables Set")
+greatestIncreaseAmt = 0
+greatestDecreaseAmt = 0
+plNet = 0
+plChangeAverage = 0
 
 # Open csv file
+with open (csvpath, newline = "") as csvfile:
+    csvreader = csv.reader(csvfile, delimiter = ",")
+
+# Read the header row
+    csv_header = next(csvreader)
 
 # Loop through file
+    for row in csvreader:
+
 # Increment counter
+        monthCount = monthCount+1
+
 # Add new amount to sum
-# Calculate profit/loss
+        plNet = plNet + int(row[1])
+
+# set profit/loss change after the first month
+        if(monthCount>1):
+            plChange = int(row[1]) - plPreviousMonth
+
+# Set "previous month P&L" to current month for next pass
+        plPreviousMonth = int(row[1])
+
+# Add current PL chagne to change sum
+        plChangeSum = plChangeSum + plChange
+
 # Check to see if greatest increase
+        if(plChange>greatestIncreaseAmt):
+            greatestIncreaseAmt = plChange
+            greatestIncreaseDate = row[0]
+
 # Check to see if greatest decrease
-# After loop, print out stats
+        if(plChange<greatestDecreaseAmt):
+            greatestDecreaseAmt = plChange
+            greatestDecreaseDate = row[0]
+
+# After loop, calculate average
+    plChangeAverage = plChangeSum / (monthCount -1)
+
+
+# print out stats
+    print("Financial Analysis")
+    print("--------------------------------------------------")
+    print("Total Months: " + str(monthCount))
+    print("Total: $" + str(plNet))
+    print("Average Change: $" + str(plChangeAverage))
+    print("Greatest Increase in Profits: " + greatestIncreaseDate + " ($" + str(greatestIncreaseAmt) + ")")
+    print("Greatest Decrease in Profits: " + greatestDecreaseDate + " ($" + str(greatestDecreaseAmt) + ")")
+
 # Write stats to output file
