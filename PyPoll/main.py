@@ -41,7 +41,7 @@ for candidate in voteTally:
     if voteTally[candidate] > winnerCount:
         winner = candidate
         winnerCount = voteTally[candidate]
-    print(candidate + str(round(voteTally[candidate]/voteCount*100,4)) + "% (" + str(voteTally[candidate]) + ")")
+    print(candidate + " " + str(round(((voteTally[candidate]/voteCount)*100),4)) + "% (" + str(voteTally[candidate]) + ")")
 print("-----------------------")
 print("Winner: " + winner)
 print("-----------------------")
