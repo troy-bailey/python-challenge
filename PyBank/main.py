@@ -68,3 +68,12 @@ with open (csvpath, newline = "") as csvfile:
     print("Greatest Decrease in Profits: " + greatestDecreaseDate + " ($" + str(greatestDecreaseAmt) + ")")
 
 # Write stats to output file
+f = open("pyBankOut.txt","w")
+f.write("Financial Analysis\n")
+f.write("--------------------------------------------------\n")
+f.write("Total Months: " + str(monthCount) + "\n")
+f.write("Total: $" + str(plNet) + "\n")
+f.write("Average Change: $" + str(plChangeAverage) + "\n")
+f.write("Greatest Increase in Profits: " + greatestIncreaseDate + " ($" + str(greatestIncreaseAmt) + ")\n")
+f.write("Greatest Decrease in Profits: " + greatestDecreaseDate + " ($" + str(greatestDecreaseAmt) + ")\n")
+f.close()
