@@ -63,7 +63,7 @@ with open (csvpath, newline = "") as csvfile:
     print("--------------------------------------------------")
     print("Total Months: " + str(monthCount))
     print("Total: $" + str(plNet))
-    print("Average Change: $" + str(plChangeAverage))
+    print("Average Change: $" + str(round(plChangeAverage,2)))
     print("Greatest Increase in Profits: " + greatestIncreaseDate + " ($" + str(greatestIncreaseAmt) + ")")
     print("Greatest Decrease in Profits: " + greatestDecreaseDate + " ($" + str(greatestDecreaseAmt) + ")")
 

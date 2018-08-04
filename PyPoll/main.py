@@ -41,7 +41,8 @@ for candidate in voteTally:
     if voteTally[candidate] > winnerCount:
         winner = candidate
         winnerCount = voteTally[candidate]
-    print(candidate + " " + str(round(((voteTally[candidate]/voteCount)*100),4)) + "% (" + str(voteTally[candidate]) + ")")
+    print(candidate + " " + "%5.2f"% ((voteTally[candidate]/voteCount)*100) + "% (" + str(voteTally[candidate]) + ")")  
+#    print(candidate + " " + str(round(((voteTally[candidate]/voteCount)*100),4)) + "% (" + str(voteTally[candidate]) + ")")
 print("-----------------------")
 print("Winner: " + winner)
 print("-----------------------")
@@ -55,7 +56,7 @@ f.write("Total Votes: " + str(voteCount)  + "\n")
 f.write("-----------------------\n")
 # Loop through the tally and create the textfile
 for candidate in voteTally:
-    f.write(candidate + " " + str(round(voteTally[candidate]/voteCount*100,4)) + "% (" + str(voteTally[candidate]) + ")\n")
+    f.write(candidate + " " + "%5.2f"% ((voteTally[candidate]/voteCount)*100) + "% (" + str(voteTally[candidate]) + ")\n")
 f.write("-----------------------\n")
 f.write("Winner: " + winner + "\n")
 f.write("-----------------------\n")
