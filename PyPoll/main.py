@@ -42,7 +42,6 @@ for candidate in voteTally:
         winner = candidate
         winnerCount = voteTally[candidate]
     print(candidate + " " + "%5.2f"% ((voteTally[candidate]/voteCount)*100) + "% (" + str(voteTally[candidate]) + ")")  
-#    print(candidate + " " + str(round(((voteTally[candidate]/voteCount)*100),4)) + "% (" + str(voteTally[candidate]) + ")")
 print("-----------------------")
 print("Winner: " + winner)
 print("-----------------------")
